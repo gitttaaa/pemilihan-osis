@@ -3,73 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OSIS | Pengumuman</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Hasil Seleksi Pendaftaran OSIS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; min-height: 100vh; background: #1f2d4d; color: #eef2ff; }
-        .page { max-width: 1200px; margin: 0 auto; padding: 1.5rem; }
-        .main-nav { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
-        .brand { font-size: 1.3rem; font-weight: 800; color: #f7b36b; }
-        .main-nav nav { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; }
-        .main-nav a { color: rgba(255,255,255,0.85); text-decoration: none; font-weight: 600; }
-        .main-nav a:hover { color: #f7b36b; }
-        .btn-nav { background: #f7b36b; color: #1c2132; padding: 0.75rem 1.2rem; border-radius: 999px; }
-        .hero { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 2rem; padding: 2rem; margin-bottom: 2rem; }
-        .hero h1 { font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 0.8rem; }
-        .hero p { color: rgba(255,255,255,0.78); line-height: 1.8; max-width: 55rem; }
-        .announcement-list { display: grid; gap: 1rem; }
-        .announcement { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 1.75rem; padding: 1.5rem; }
-        .announcement h2 { font-size: 1.35rem; margin-bottom: 0.8rem; color: #fff; }
-        .announcement p { color: rgba(255,255,255,0.8); line-height: 1.75; }
-        .announcement time { display: inline-block; margin-top: 0.8rem; color: rgba(255,255,255,0.65); font-size: 0.9rem; }
-        .cta { margin-top: 2rem; text-align: center; }
-        .cta a { display: inline-flex; align-items: center; gap: 0.7rem; background: #f7b36b; color: #1c2132; text-decoration: none; padding: 0.95rem 1.6rem; border-radius: 999px; font-weight: 700; }
-        footer { text-align: center; margin-top: 2.5rem; color: rgba(255,255,255,0.55); }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #23293a; /* Menyamakan dengan halaman pendaftaran */
+            color: rgba(255,255,255,0.95);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .card {
+            background: rgba(15,23,42,0.9);
+            max-width: 600px;
+            width: 100%;
+            border-radius: 1.5rem;
+            padding: 3rem 2rem;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.03);
+            box-shadow: 0 25px 60px rgba(2,6,23,0.6);
+        }
+        .icon-box {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .text-success { color: #48bb78; }
+        .text-danger { color: #f56565; }
+        
+        h1 { font-size: 2.2rem; font-weight: 800; margin-bottom: 1rem; }
+        p { color: rgba(255,255,255,0.75); font-size: 1.05rem; line-height: 1.6; margin-bottom: 2rem; }
+        
+        .info-table {
+            background: rgba(255,255,255,0.05);
+            padding: 1.2rem;
+            border-radius: 1rem;
+            margin-bottom: 2.5rem;
+            text-align: left;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        .info-row:last-child { margin-bottom: 0; }
+        .info-label { color: rgba(255,255,255,0.5); }
+        .info-value { font-weight: 600; color: #ffffff; }
+
+        .btn-back {
+            display: inline-block;
+            background: #f59e5b;
+            color: #1b1e32;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 999px;
+            font-weight: 700;
+            transition: transform 0.15s;
+        }
+        .btn-back:hover { transform: translateY(-2px); }
     </style>
 </head>
 <body>
-    <div class="page">
-        <header class="main-nav">
-            <div class="brand">OSIS</div>
-            <nav>
-                <a href="{{ route('home') }}">Beranda</a>
-                <a href="{{ route('osis.informasi') }}">Informasi</a>
-                <a href="{{ route('osis.jadwal') }}">Jadwal</a>
-                <a href="{{ route('osis.pengumuman') }}">Pengumuman</a>
-                <a href="{{ route('osis.pendaftaran') }}" class="btn-nav">Daftar Sekarang</a>
-            </nav>
-        </header>
 
-        <section class="hero">
-            <h1>Pengumuman Penting</h1>
-            <p>Semua informasi terbaru mengenai pendaftaran calon OSIS, verifikasi, dan jadwal tersedia di halaman ini. Pastikan selalu cek pengumuman untuk tidak ketinggalan update.</p>
-        </section>
+    <div class="card">
+        @if($isLolos)
+            <div class="icon-box text-success">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h1>SELAMAT, {{ strtoupper($nama) }}!</h1>
+            <p>Kamu dinyatakan <strong>LOLOS</strong> seleksi administrasi dan kuis OSIS periode 2026. Terima kasih atas usaha dan kerja keras yang telah kamu tunjukkan selama proses pengisian data.</p>
+        @else
+            <div class="icon-box text-danger">
+                <i class="fas fa-times-circle"></i>
+            </div>
+            <h1>MAAF, KAMU BELUM LOLOS</h1>
+            <p>Mohon maaf, saat ini kamu belum berhasil memenuhi ambang batas nilai seleksi. Jangan berkecil hati, tetap semangat dan terima kasih banyak atas partisipasi serta antusiasme yang kamu berikan!</p>
+        @endif
 
-        <div class="announcement-list">
-            <article class="announcement">
-                <h2>Pengumuman Pendaftaran Dibuka</h2>
-                <p>Pendaftaran calon OSIS resmi dibuka untuk seluruh siswa aktif. Silakan cek halaman beranda dan klik tombol Daftar Sekarang untuk memulai.</p>
-                <time>12 Mei 2026</time>
-            </article>
-            <article class="announcement">
-                <h2>Informasi Verifikasi</h2>
-                <p>Setelah mengirim formulir, data akan diverifikasi oleh admin. Status pendaftar akan berubah menjadi terverifikasi jika lengkap.</p>
-                <time>13 Mei 2026</time>
-            </article>
-            <article class="announcement">
-                <h2>Jadwal Wawancara</h2>
-                <p>Jadwal wawancara akan muncul setelah verifikasi. Pastikan kamu mempersiapkan jawaban tentang visi, misi, dan kontribusi kamu.</p>
-                <time>14 Mei 2026</time>
-            </article>
+        <div class="info-table">
+            <div class="info-row">
+                <span class="info-label">Nama Pendaftar</span>
+                <span class="info-value">{{ $nama }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Pilihan Bidang</span>
+                <span class="info-value">{{ $sekbid }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Skor Kuis Anda</span>
+                <span class="info-value" style="color: {{ $isLolos ? '#48bb78' : '#f56565' }}">{{ $score }} / 100</span>
+            </div>
+            @if($isLolos)
+            <div class="info-row">
+                <span class="info-label">Tahap Selanjutnya</span>
+                <span class="info-value" style="color: #f6ad55;">Wawancara Tatap Muka</span>
+            </div>
+            @endif
         </div>
 
-        <div class="cta">
-            <a href="{{ route('osis.pendaftaran') }}"><i class="fas fa-pencil-alt"></i> Kembali ke Pendaftaran</a>
-        </div>
-
-        <footer>2026 • Pengumuman OSIS SMK Plus Pelita Nusantara</footer>
+        <a href="/" class="btn-back"><i class="fas fa-home"></i> Kembali ke Dashboard</a>
     </div>
+
 </body>
 </html>
