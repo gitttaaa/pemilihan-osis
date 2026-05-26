@@ -203,6 +203,7 @@
                                     <div class="sekbid-icon"><i class="fas fa-flag" style="color: #e53e3e"></i></div>
                                     <div class="sekbid-name">Sekbid 3 (Wawasan Kebangsaan)</div>
                                 </div>
+                                <br>
                                 <div class="sekbid-option" data-id="4" data-nama="Sekbid 4 (Olahraga & Kesenian)">
                                     <div class="radio-check"></div>
                                     <div class="sekbid-icon"><i class="fas fa-palette" style="color: #ed64a6"></i></div>
@@ -293,7 +294,7 @@
 
         <footer>
             <i class="fas fa-copyright"></i> 2026 - Panitia Seleksi Pengurus OSIS Berbasis Aturan Keputusan SPK
-        </footer>
+               </footer>
     </div>
 
     <script>
@@ -497,7 +498,7 @@
                 step4.classList.remove('hidden');
                 
                 // Mengubah Header Sesuai Gambar Mockup Paling Atas
-                heroTitle.innerText = "HASIL EVALUASI SISTEM (SPK)";
+                heroTitle.innerText = "HASIL";
                 heroSubtitle.innerText = "Hasil penilaian otomatis terhitung oleh sistem secara realtime.";
             }
         });
